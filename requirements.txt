@@ -1,0 +1,9 @@
+pytorch-lightning
+tqdm
+requests
+matplotlib
+pandas
+einops
+tensorboard
+timm
+scikit-learn==1.5.2
