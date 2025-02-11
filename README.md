@@ -167,6 +167,17 @@ We provide 2 quick demos.
 - [Demo](demo.ipynb).
 # Citation
 If you found DINO-Foresight useful in your research, please consider starring ⭐ us on GitHub and citing 📚 us in your research!
+```bibtex
+@misc{karypidis2024dinoforesightlookingfuturedino,
+      title={DINO-Foresight: Looking into the Future with DINO}, 
+      author={Efstathios Karypidis and Ioannis Kakogeorgiou and Spyros Gidaris and Nikos Komodakis},
+      year={2024},
+      eprint={2412.11673},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2412.11673}, 
+}
+```
 
 # Acknowledgements
 Our code is partially based on [Maskgit-pytorch](https://github.com/valeoai/Maskgit-pytorch), a pytorch implementation of MaskedGit by ValeoAI. We also thank authors of [DINOv2](https://github.com/facebookresearch/dinov2), [DPT](https://github.com/isl-org/DPT), [DepthAnythingV2](https://github.com/DepthAnything/Depth-Anything-V2), [LOTUS](https://github.com/EnVision-Research/Lotus) for their work and open-source code.
