@@ -9,7 +9,7 @@ In order to train DPT heads for semantic segmentation with default settings use:
 ```bash
 python train_dpt_head.py --img_size 448,896 --modality "segm" --batch_size 16 --max_epochs 100 \
     --warmup_p 0.1 --num_gpus 8 --precision "16-mixed" --data_path "path/to/cityscapes" \
-    --lr_base 1e-4 --optimizer "adamw" --weight_decay 1e-4 --scheduler "poly" --down_up_sample "none" --eval_freq 1  \
+    --lr_base 1e-4 --optimizer "adamw" --weight_decay 1e-4 --scheduler "poly" --eval_freq 1  \
     --feature_extractor "dino" --num_classes 19 --dlayers 2,5,8,11 --dpt_out_channels 128,256,512,512 --use_bn \
     --pca_ckpt "path/to/pca/dinov2_pca_448_l[2_5_8_11]_1152.pth" \
     --dst_path "/logs/dino_segm_dpt_pca" \
@@ -18,7 +18,7 @@ In order to train DPT heads for depth estimation with default settings use:
 ```bash
 python train_dpt_head.py --img_size 448,896 --modality "depth" --batch_size 16 --max_epochs 100 \      
       --warmup_p 0.1 --num_gpus 8 --precision "16-mixed" ---data_path "path/to/cityscapes" \
-      --lr_base 1e-4 --optimizer "adamw" --weight_decay 1e-4 --scheduler "cosine" --down_up_sample "none" --eval_freq 1  \
+      --lr_base 1e-4 --optimizer "adamw" --weight_decay 1e-4 --scheduler "cosine" --eval_freq 1  \
       --feature_extractor "dino" --num_classes 256 --dlayers 2,5,8,11 --dpt_out_channels 128,256,512,512 --use_bn \
       --pca_ckpt "path/to/pca/pca_448_l[2_5_8_11]_1152.pth" \
       --dst_path "logs/dino_depth_dpt_pca" \
@@ -27,7 +27,7 @@ In order to train DPT heads for surface normal estimation with default settings 
 ```bash
 python train_dpt_head.py --img_size 448,896 --modality "surface_normals" --batch_size 16 --max_epochs 100 \
       --warmup_p 0.1 --num_gpus 8 --precision 16-mixed --data_path "path/to/cityscapes" \
-      --lr_base 1e-4 --optimizer "adamw" --weight_decay 1e-4 --scheduler "poly" --down_up_sample "none" --eval_freq 1  \
+      --lr_base 1e-4 --optimizer "adamw" --weight_decay 1e-4 --scheduler "poly" --eval_freq 1  \
       --feature_extractor "dino" --num_classes 3 --dlayers 2,5,8,11 --dpt_out_channels 128,256,512,512 --use_bn \
       --pca_ckpt "path/to/pca/pca_448_l[2_5_8_11]_1152.pth"  \
       --dst_path "/logs/dino_surfnorm_dpt" \
