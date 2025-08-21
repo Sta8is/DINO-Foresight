@@ -168,14 +168,11 @@ We provide 2 quick demos.
 # Citation
 If you found DINO-Foresight useful in your research, please consider starring ⭐ us on GitHub and citing 📚 us in your research!
 ```bibtex
-@misc{karypidis2024dinoforesightlookingfuturedino,
-      title={DINO-Foresight: Looking into the Future with DINO}, 
-      author={Efstathios Karypidis and Ioannis Kakogeorgiou and Spyros Gidaris and Nikos Komodakis},
-      year={2024},
-      eprint={2412.11673},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2412.11673}, 
+@article{karypidis2024dino,
+  title={DINO-Foresight: Looking into the Future with DINO},
+  author={Karypidis, Efstathios and Kakogeorgiou, Ioannis and Gidaris, Spyros and Komodakis, Nikos},
+  journal={arXiv preprint arXiv:2412.11673},
+  year={2024}
 }
 ```
 
