@@ -35,8 +35,8 @@ This repository contains the official implementation of the paper: **DINO-Foresi
 10. [Acknowledgements](#acknowledgements)
 
 # News
-**2025/9/19** Dino-Foresight is accepted at NeurIPS 2025! 🎉 
-**2024-12-17**: [Arxiv Preprint](https://arxiv.org/abs/2412.11673) and GitHub repository are released!
+- **2025/9/19**: Dino-Foresight is accepted at NeurIPS 2025! 🎉 Stay tuned for more updates
+- **2024-12-17**: [Arxiv Preprint](https://arxiv.org/abs/2412.11673) and GitHub repository are released!
 
 # Installation
 The code is tested with Python 3.11 and PyTorch 2.0.1+cu121 on Ubuntu 22.04.05 LTS.
