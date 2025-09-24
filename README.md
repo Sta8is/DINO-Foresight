@@ -35,6 +35,7 @@ This repository contains the official implementation of the paper: **DINO-Foresi
 10. [Acknowledgements](#acknowledgements)
 
 # News
+**2025/9/19** Dino-Foresight is accepted at NeurIPS 2025! 🎉 
 **2024-12-17**: [Arxiv Preprint](https://arxiv.org/abs/2412.11673) and GitHub repository are released!
 
 # Installation
