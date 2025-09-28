@@ -158,7 +158,7 @@ class Dino_f(pl.LightningModule):
             self.feature_dim = self.sam.embed_dim
         self.embedding_dim = self.d_num_layers * self.feature_dim
         if self.args.pca_ckpt:
-            self.pca_dict = torch.load(self.args.pca_ckpt)
+            self.pca_dict = torch.load(self.args.pca_ckpt, weights_only=False)
             self.pca = self.pca_dict['pca_model']
             self.pca_mean = torch.nn.Parameter(torch.tensor(self.pca.mean_), requires_grad=False)
             self.pca_components = torch.nn.Parameter(torch.tensor(self.pca.components_), requires_grad=False)

@@ -120,7 +120,7 @@ We provide the scripts to train and and evaluate a [DPT-head](https://github.com
 To evaluate feature prediction on downstream tasks, run the following commands:
 ## Semantic Segmentation
 ```bash
-python train.py --num_workers=16 --num_workers_val=4 --num_gpus=4 --precision 16-mixed --eval_freq 10 \
+python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16-mixed --eval_freq 10 \
     --batch_size 2 --hidden_dim 1152 --heads 8 --layers 12 --dropout 0.1  --max_epochs 20 \
     --eval_mode_during_training --evaluate --single_step_sample_train --lr_base 1e-5 --loss_type SmoothL1 \
     --masking "simple_replace" --seperable_attention --random_horizontal_flip --accum_iter 8 \
@@ -134,7 +134,7 @@ python train.py --num_workers=16 --num_workers_val=4 --num_gpus=4 --precision 16
 ```
 ## Depth Estimation
 ```bash
-python train.py --num_workers=16 --num_workers_val=4 --num_gpus=4 --precision 16-mixed --eval_freq 10 \
+python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16-mixed --eval_freq 10 \
     --batch_size 2 --hidden_dim 1152 --heads 8 --layers 12 --dropout 0.1  --max_epochs 20 \
     --eval_mode_during_training --evaluate --single_step_sample_train --lr_base 1e-5 --loss_type SmoothL1 \
     --masking "simple_replace" --seperable_attention --random_horizontal_flip --accum_iter 8 \
@@ -148,7 +148,7 @@ python train.py --num_workers=16 --num_workers_val=4 --num_gpus=4 --precision 16
 ```
 ## Surface Normal Estimation
 ```bash
-python train.py --num_workers=16 --num_workers_val=4 --num_gpus=4 --precision 16-mixed --eval_freq 10 \
+python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16-mixed --eval_freq 10 \
     --batch_size 2 --hidden_dim 1152 --heads 8 --layers 12 --dropout 0.1  --max_epochs 20 \
     --eval_mode_during_training --evaluate --single_step_sample_train --lr_base 1e-5 --loss_type SmoothL1 \
     --masking "simple_replace" --seperable_attention --random_horizontal_flip --accum_iter 8 \

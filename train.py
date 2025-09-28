@@ -129,9 +129,9 @@ args.lr = (args.lr_base * args.effective_batch_size) / 8 # args.lr_base is speci
 print(f'Effective batch size:{args.effective_batch_size} lr_base={args.lr_base} lr={args.lr} max_epochs={args.max_epochs} - max_steps={args.max_steps}')
 
 if not args.high_res_adapt:
-    Dino_f = Dino_f(args)
+    Dino_foresight = Dino_f(args)
 else:
-    Dino_f = Dino_f.load_from_checkpoint(args.ckpt,args=args,strict=False) 
+    Dino_foresight = Dino_f.load_from_checkpoint(args.ckpt,args=args,strict=False, map_location="cpu")
 
 callbacks = []
 checkpoint_callback = pl.callbacks.ModelCheckpoint(monitor='val/loss', mode='min', save_top_k=1, save_last=True)
@@ -155,9 +155,9 @@ trainer = pl.Trainer(
 
 if not args.eval_ckpt_only:
    if args.ckpt and not args.high_res_adapt:
-       trainer.fit(Dino_f,data,ckpt_path=args.ckpt)
+       trainer.fit(Dino_foresight,data,ckpt_path=args.ckpt)
    else:
-       trainer.fit(Dino_f,data)
+       trainer.fit(Dino_foresight,data)
 else:
     args.evaluate = True
     args.eval_last = True
@@ -175,13 +175,13 @@ if args.evaluate:
         checkpoint_path = checkpoint_callback.last_model_path
 
     print(f'checkpoint_path = {checkpoint_path}')
-    Dino_f = Dino_f.load_from_checkpoint(checkpoint_path,args=args,strict=False)
-    print('-----------Dino_f.eval_mode = ',Dino_f.args.eval_mode)
-    Dino_f.to(args.device)
-    Dino_f.eval()
+    Dino_foresight = Dino_f.load_from_checkpoint(checkpoint_path,args=args,strict=False, map_location="cpu")
+    print('-----------Dino_foresight.eval_mode = ',Dino_foresight.args.eval_mode)
+    Dino_foresight.to(args.device)
+    Dino_foresight.eval()
 
     val_data_loader = data.val_dataloader()
-    out_metrics = trainer.validate(model=Dino_f, dataloaders=val_data_loader)
+    out_metrics = trainer.validate(model=Dino_foresight, dataloaders=val_data_loader)
     loss = out_metrics[0]['val/mean_loss']
     if args.eval_modality == "None":
         if args.rank==0:
