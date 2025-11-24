@@ -169,11 +169,13 @@ We provide 2 quick demos.
 # Citation
 If you found DINO-Foresight useful in your research, please consider starring ⭐ us on GitHub and citing 📚 us in your research!
 ```bibtex
-@article{karypidis2024dino,
-  title={DINO-Foresight: Looking into the Future with DINO},
-  author={Karypidis, Efstathios and Kakogeorgiou, Ioannis and Gidaris, Spyros and Komodakis, Nikos},
-  journal={arXiv preprint arXiv:2412.11673},
-  year={2024}
+@inproceedings{
+karypidis2025dinoforesight,
+title={{DINO}-Foresight: Looking into the Future with {DINO}},
+author={Efstathios Karypidis and Ioannis Kakogeorgiou and Spyros Gidaris and Nikos Komodakis},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems},
+year={2025},
+url={https://openreview.net/forum?id=gimtybo07H}
 }
 ```
 
