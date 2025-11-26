@@ -9,9 +9,9 @@
 [![DINO--Foresight](https://img.shields.io/badge/arXiv-2412.11673-b31b1b?logo=arxiv&logoColor=white)](https://arxiv.org/abs/2412.11673)
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1K8o3-zkR5lCdAv7Qjz7rhWP8n2VrFOdz?usp=drive_link)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
-<!-- [![Dino--Foresight](https://img.shields.io/badge/Project_Page-Dino--Foresight-brightgreen)]() -->
-<!-- [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)]() -->
-<!-- [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Paper-yellow)]() -->
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Pretrained_Model-blue)](https://huggingface.co/Sta8is/DINO-Foresight)
+[![Project Page](https://img.shields.io/badge/-Project_Page-green.svg?colorA=333&logo=html5)](https://dino-foresight.github.io/)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Paper-yellow)](https://huggingface.co/papers/2412.11673)
 
 
 </div>
