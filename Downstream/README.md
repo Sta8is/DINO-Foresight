@@ -53,29 +53,29 @@ You can download the pre-trained models from the following links:
 
 |Task|Checkpoint|$mIoU$|$MO\_mIoU$|
 | - | - | - | - |
-| Semantic Segmentation| [Download](https://drive.google.com/file/d/1ZJhCP3fEso4skbWBDybUu09Jil4d-mK0/view?usp=drive_link) | 77 | 77.4 |
+| Semantic Segmentation| [Download](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/head_segm_pca1152.ckpt) | 77 | 77.4 |
 
 or via command line:
 ```bash
-gdown https://drive.google.com/uc?id=1ZJhCP3fEso4skbWBDybUu09Jil4d-mK0
+wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/head_segm_pca1152.ckpt
 ```
 
 | Task | Checkpoint |$\delta_1$ | $Abs Rel$ |
 | - | - | - | - |
-| Depth Estimation | [Download](https://drive.google.com/file/d/1cYQFywsg0eD0hogxHB3SjWZufzP0Grfi/view?usp=drive_link) | 89.1 | 0.108 |
+| Depth Estimation | [Download](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/head_depth_pca1152.ckpt) | 89.1 | 0.108 |
 
 or via command line:
 ```bash
-gdown https://drive.google.com/uc?id=1cYQFywsg0eD0hogxHB3SjWZufzP0Grfi
+wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/head_depth_pca1152.ckpt
 ```
 
 | Task | Checkpoint | $m$ | $11.25\degree$ | 
 | - | - | - | - |
-| Surface Normal Estimation | [Download](https://drive.google.com/file/d/188ZlR226adI9i137_1L48G5A163nXpG6/view?usp=drive_link) | 3.24 | 94.4 |
+| Surface Normal Estimation | [Download](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/head_normals_pca1152.ckpt) | 3.24 | 94.4 |
 
 or via command line:
 ```bash
-gdown https://drive.google.com/uc?id=188ZlR226adI9i137_1L48G5A163nXpG6
+wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/head_normals_pca1152.ckpt
 ```
 
 ## Inference 
