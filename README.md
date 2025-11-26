@@ -110,7 +110,7 @@ python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16
 ```
 You can also download the pre-trained model from [here](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinof_highres.ckpt). To download the pre-trained model via command line:
 ```bash
-wget https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinof_highres.ckpt
+wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/dinof_highres.ckpt
 ```
 
 # Downstream Tasks
