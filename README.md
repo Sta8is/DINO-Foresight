@@ -74,9 +74,9 @@ To precompute the PCA matrices different Vision Foundation Models (VFMs) on city
 ```bash
 python pca --feature_extractor dinov2 --layers 2,5,9,11 --image_size 448,896 --n_components 1152 --cityscapes_root /path/to/cityscapes/leftImg8bit
 ```
-However, the implementation is based on scikit-learn (cpu-based) and may require a lot of RAM memory and time to compute the PCA matrices for features extracted from training set. For this reason, we provide the precomputed PCA checkpoints [here](https://drive.google.com/file/d/1RB_ksbvzN0TGE5HyNVKGrmbLElWu90qt/view?usp=sharing). To download the precomputed PCA via command line:
+However, the implementation is based on scikit-learn (cpu-based) and may require a lot of RAM memory and time to compute the PCA matrices for features extracted from training set. For this reason, we provide the precomputed PCA checkpoints [here](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinov2_pca_448_l%5B2_5_8_11%5D_1152.pth). To download the precomputed PCA via command line:
 ```bash
-gdown https://drive.google.com/uc?id=1RB_ksbvzN0TGE5HyNVKGrmbLElWu90qt
+wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/dinov2_pca_448_l%5B2_5_8_11%5D_1152.pth
 ```
 
 # Dino-Foresight Training
@@ -92,9 +92,9 @@ python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16
     --dst_path /logdir/dino_foresight_lowres_pca_fullmask \
 
 ```
-You can also download the pre-trained model from [here](https://drive.google.com/file/d/1BjSPVdtjFanh9_-Zr2dXBB_AU5pl0J7l/view?usp=sharing). To download the pre-trained model via command line:
+You can also download the pre-trained model from [here](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinof_lowres.ckpt). To download the pre-trained model via command line:
 ```bash
-gdown https://drive.google.com/uc?id=1BjSPVdtjFanh9_-Zr2dXBB_AU5pl0J7l
+wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/dinof_lowres.ckpt
 ```
 
 
@@ -108,9 +108,9 @@ python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16
     --dst_path /logdir/dino_foresight_highres_pca_fullmask \
     --ckpt /path/to/lowres/ckpt.pth --high_res_adapt
 ```
-You can also download the pre-trained model from [here](https://drive.google.com/file/d/1FllscBnxcZOziEcjkdbZwErjD77UdaQr/view?usp=sharing). To download the pre-trained model via command line:
+You can also download the pre-trained model from [here](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinof_highres.ckpt). To download the pre-trained model via command line:
 ```bash
-gdown https://drive.google.com/uc?id=1FllscBnxcZOziEcjkdbZwErjD77UdaQr
+wget https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinof_highres.ckpt
 ```
 
 # Downstream Tasks
