@@ -64,6 +64,55 @@ cityscapes
 │   ├───val
 │   ├───test
 ```
+## nuScenes
+Dino-Foresight can also be trained on [nuScenes](https://www.nuscenes.org/nuscenes) (feature prediction on the front camera). Install the devkit (only needed for nuScenes):
+```bash
+pip install nuscenes-devkit
+```
+From the [official website](https://www.nuscenes.org/nuscenes#download) download the `Metadata` of the full dataset (v1.0-trainval, it contains the `maps` and `v1.0-trainval` folders) and the `CAM_FRONT` images of the keyframes (`samples`) and of the sweeps (`sweeps`). Each scene is used as one video sequence made of all its front-camera frames (keyframes and sweeps, ~12 Hz) of the standard train (700 scenes) / val (150 scenes) split. The expected structure is:
+```
+NuScenes
+│
+├───maps                   # required by the devkit
+├───samples
+│   └───CAM_FRONT          # keyframe images
+├───sweeps
+│   └───CAM_FRONT          # intermediate (sweep) images
+├───v1.0-trainval          # metadata (scene.json, sample.json, sample_data.json, ...)
+```
+The other cameras and sensors are not needed. To train on nuScenes, use the training commands below with `--dataset "nuscenes" --data_path "/path/to/NuScenes"`.
+
+### Depth and surface normals
+To evaluate the predicted features on nuScenes, we provide depth and surface normal labels for the front camera, generated with [DepthAnythingV2](https://github.com/DepthAnything/Depth-Anything-V2) and [Lotus](https://github.com/EnVision-Research/Lotus) as for Cityscapes (see [Preparation of Labels for Library of Heads](preprocess_scripts/README.md)). They contain 4,164 (depth) and 4,014 (normals) front-camera frames, including the evaluation frame of every train and val scene, and have the same file names and relative paths as the nuScenes images:
+
+| Modality | Format | Hugging Face |
+| - | - | - |
+| Depth | 8-bit grayscale `.jpg`, 1600x900 | [Sta8is/Nuscenes_depthv2](https://huggingface.co/datasets/Sta8is/Nuscenes_depthv2) |
+| Surface normals | `float32` `.npy`, shape (896, 1600, 3) | [Sta8is/Nuscenes_normals](https://huggingface.co/datasets/Sta8is/Nuscenes_normals) (~65 GB) |
+
+To download them via command line:
+```bash
+hf download Sta8is/Nuscenes_depthv2 --repo-type dataset --local-dir NuScenes_depthv2
+hf download Sta8is/Nuscenes_normals --repo-type dataset --local-dir NuScenes_normals
+```
+Place them next to the nuScenes folder, so that the final structure is:
+```
+NuScenes
+NuScenes_depthv2
+│
+├───samples
+│   └───CAM_FRONT
+├───sweeps
+│   └───CAM_FRONT
+NuScenes_normals
+│
+├───samples
+│   └───CAM_FRONT
+├───sweeps
+│   └───CAM_FRONT
+```
+The folders have to follow this structure and naming (`<nuscenes folder>_depthv2` and `<nuscenes folder>_normals`, next to the nuScenes folder). Then evaluate with `--dataset "nuscenes" --data_path "/path/to/NuScenes" --eval_modality "depth"` (or `"surface_normals"`) together with the corresponding DPT head (`--head_ckpt`, `--num_classes 256` for depth and `3` for surface normals), as in the [Evaluation](#evaluation) commands. There are no semantic segmentation labels for nuScenes.
+
 ## Prepare Labels for Library of Heads
 For semantic/instance segmentation, we use the `leftImg8bit` and `gtFine` packages. To create targets for depth and surface normals we use off the shelf networks.
 For more details regarding segmentation, depth and surface normals modalities preparation, refer to [Preparation of Labels for Library of Heads](preprocess_scripts/README.md).
@@ -92,6 +141,8 @@ python train.py --num_workers=16 --num_workers_val=4 --num_gpus=8 --precision 16
     --dst_path /logdir/dino_foresight_lowres_pca_fullmask \
 
 ```
+To train on nuScenes instead, replace the dataset arguments of the command above with `--dataset "nuscenes" --data_path "/path/to/nuscenes"` (see [nuScenes](#nuscenes)).
+
 You can also download the pre-trained model from [here](https://huggingface.co/Sta8is/DINO-Foresight/blob/main/dinof_lowres.ckpt). To download the pre-trained model via command line:
 ```bash
 wget https://huggingface.co/Sta8is/DINO-Foresight/resolve/main/dinof_lowres.ckpt

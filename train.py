@@ -1,4 +1,5 @@
 from src.data import CS_VideoData 
+from src.data_nu import NS_VideoData
 from src.dino_f import Dino_f
 import pytorch_lightning as pl
 import torch 
@@ -17,6 +18,7 @@ def parse_list(x):
 
 parser = argparse.ArgumentParser()
 # Data Parameters
+parser.add_argument('--dataset', type=str, default='cityscapes', choices=['cityscapes', 'nuscenes'])
 parser.add_argument('--data_path', type=str, default='/home/ubuntu/cityscapes')
 parser.add_argument('--dst_path', type=str, default=None)
 parser.add_argument('--img_size', type=parse_tuple, default=(224,448))
@@ -88,10 +90,17 @@ parser.add_argument('--eval_midterm', action='store_true', default=False)
 
 args = parser.parse_args()
 
+
+def get_datamodule(args):
+    if args.dataset == 'nuscenes':
+        return NS_VideoData(arguments=args,subset='train',batch_size=args.batch_size)
+    return CS_VideoData(arguments=args,subset='train',batch_size=args.batch_size)
+
+
 args.eval_mode = args.eval_mode_during_training
 pl.seed_everything(args.seed, workers=True)
 
-data = CS_VideoData(arguments=args,subset='train',batch_size=args.batch_size)
+data = get_datamodule(args)
 
 
 if args.precision == '32':
@@ -162,7 +171,7 @@ else:
     args.evaluate = True
     args.eval_last = True
     checkpoint_callback.last_model_path = args.ckpt
-    data = CS_VideoData(arguments=args,subset='train',batch_size=args.batch_size)
+    data = get_datamodule(args)
 
 # Evaluation
 if args.evaluate:

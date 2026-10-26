@@ -605,7 +605,7 @@ class Dino_f(pl.LightningModule):
             pred_feats_list = [pred_feats[:,:,:,i*self.feature_dim:(i+1)*self.feature_dim] for i in range(self.d_num_layers)]
             pred_feats_list = [einops.rearrange(x, 'b h w c -> b (h w) c',h=H//self.patch_size, w=W//self.patch_size) for x in pred_feats_list]
             pred_segm = self.head(pred_feats_list,self.patch_h,self.patch_w)
-            pred_segm = F.interpolate(pred_segm, size=(1024,2048), mode='bicubic', align_corners=False)
+            pred_segm = F.interpolate(pred_segm, size=gt_segm.shape[-2:], mode='bicubic', align_corners=False)
             self.iou_metric.update(pred_segm, gt_segm.squeeze(1))
             IoU = self.iou_metric.compute()
             mIoU = torch.mean(IoU)
@@ -617,7 +617,7 @@ class Dino_f(pl.LightningModule):
             pred_feats_list = [pred_feats[:,:,:,i*self.feature_dim:(i+1)*self.feature_dim] for i in range(self.d_num_layers)]
             pred_feats_list = [einops.rearrange(x, 'b h w c -> b (h w) c',h=H//self.patch_size, w=W//self.patch_size) for x in pred_feats_list]
             pred_depth = self.head(pred_feats_list,self.patch_h,self.patch_w)
-            pred_depth = F.interpolate(pred_depth, size=(1024,2048), mode='bicubic', align_corners=False)
+            pred_depth = F.interpolate(pred_depth, size=gt_depth.shape[-2:], mode='bicubic', align_corners=False)
             pred_depth = pred_depth.argmax(dim=1)
             update_depth_metrics(pred_depth, gt_depth.squeeze(1), self.d1, self.d2, self.d3, self.abs_rel, self.rmse, self.log_10, self.rmse_log, self.silog, self.sq_rel)
             d1, d2, d3, abs_rel, rmse, log_10, rmse_log, silog, sq_rel = compute_depth_metrics(self.d1, self.d2, self.d3, self.abs_rel, self.rmse, self.log_10, self.rmse_log, self.silog, self.sq_rel)
@@ -634,7 +634,7 @@ class Dino_f(pl.LightningModule):
             pred_feats_list = [pred_feats[:,:,:,i*self.feature_dim:(i+1)*self.feature_dim] for i in range(self.d_num_layers)]
             pred_feats_list = [einops.rearrange(x, 'b h w c -> b (h w) c',h=H//self.patch_size, w=W//self.patch_size) for x in pred_feats_list]
             pred_normals = self.head(pred_feats_list,self.patch_h,self.patch_w)
-            pred_normals = F.interpolate(pred_normals, size=(1024,2048), mode='bicubic', align_corners=False)
+            pred_normals = F.interpolate(pred_normals, size=gt_normals.shape[-2:], mode='bicubic', align_corners=False)
             update_normal_metrics(pred_normals, gt_normals, self.mean_ae, self.median_ae, self.rmse, self.a1, self.a2, self.a3, self.a4, self.a5)
             mean_ae, median_ae, rmse, a1, a2, a3, a4, a5 = compute_normal_metrics(self.mean_ae, self.median_ae, self.rmse, self.a1, self.a2, self.a3, self.a4, self.a5)
             self.log('val/mean_ae', mean_ae, prog_bar=True, batch_size=1, on_step=True, logger=True, rank_zero_only=True)
